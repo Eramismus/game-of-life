@@ -2,12 +2,16 @@ package main
 
 import (
 	// "math/rand"
-    "fmt"
-    . "github.com/eramismus/game-of-life/src"
+	"fmt"
+
+	. "github.com/eramismus/game-of-life/src/gol"
+	. "github.com/eramismus/game-of-life/src/graphics"
 )
 
 func main() {
 	fmt.Println("Starting the game")
+	StartWebSocketServer(10000, "/endpoint")
+
 	game_grid := DefineGrid(5, 5)
 	fmt.Println("Nodes:", game_grid)
 
@@ -22,7 +26,7 @@ func main() {
 	fmt.Println("Seeded Nodes:", game_grid)
 
 	neighbour_map := FindNeighbours(game_grid)
-    fmt.Println("Neighbour map:", neighbour_map)
+	fmt.Println("Neighbour map:", neighbour_map)
 
 	for i := 0; i < 20; i++ {
 		UpdateGrid(&game_grid, neighbour_map)
